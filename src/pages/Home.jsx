@@ -4,7 +4,6 @@ import Body from 'components/Body';
 const Home = () => {
   return (
     <div>
-        <Navbar/>
         <Body/>
     </div>
   )

@@ -1,18 +1,23 @@
-import Home from "pages/Home";
 import Footer from "components/Footer";
+import Form from "components/Form";
+import Home from "pages/Home";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LanguageSettings from "components/LanguageSettings";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Navbar from "components/Navbar";
 
 function App() {
   return (
     <div className="App">
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route></Route>
-      </Routes>
-      <Footer/>
-    </Router>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/form" element={<Form />}></Route>
+          <Route path="/language" element={<LanguageSettings />}></Route>
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }

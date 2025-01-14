@@ -1,25 +1,27 @@
 import React from "react";
-import { FaShoppingCart, FaSearch} from "react-icons/fa"
+import {
+  FaShoppingCart,
+  FaSearch,
+  FaMapMarkerAlt,
+  FaCaretDown,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2">
+    <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2 h-14">
       {/* Amazon Logo */}
-      <div className="flex items-center flex-grow sm:flex-grow-0">
+      <div className="flex items-center flex-grow sm:flex-grow-0 hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
         <img
           src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
           alt="Logo"
-          className="h-10 w-auto cursor-pointer"
+          className="h-10 w-auto"
         />
       </div>
 
       {/* Location */}
-      <div className="flex items-center space-x-2">
-        <img
-          src=""
-          alt="Location Icon"
-          className="h-5 w-5"
-        />
+      <div className="flex items-center space-x-2 hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
+        <FaMapMarkerAlt className="text-white h-5 w-5" /> {/* Location Icon */}
         <div className="text-xs">
           <p>Delivering to Meerut 250001</p>
           <h3 className="font-semibold text-sm hover:underline cursor-pointer">
@@ -29,27 +31,50 @@ const Navbar = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="flex flex-grow items-center bg-white text-black rounded-md overflow-hidden">
-        <div className="bg-gray-200 px-4 py-2 text-sm font-semibold flex items-center">
-          <p>All</p>
-          <img src="" alt="Dropdown" className="h-4 w-4 ml-1" />
-        </div>
-        <input
-          type="text"
-          placeholder="Search Amazon.in"
-          className="flex-grow px-4 py-2 focus:outline-none"
-        />
-        <div className="bg-yellow-500 px-4 py-2 flex items-center justify-center cursor-pointer">
-          <FaSearch className="text-gray-500 h-5 w-5 cursor-pointer" /> {/* Search icon */}
+      <div className="flex gap-0 flex-grow items-center mx-5 text-black border border-gray-400 rounded-md overflow-hidden hover:shadow-md h-9">
+  {/* Dropdown Section */}
+  <div className="relative flex items-center w-14 h-full bg-gray-200 rounded-l-md">
+    <select className="bg-gray-200 px-4 py-2 text-sm font-semibold focus:outline-none cursor-pointer appearance-none w-full h-9">
+      <option>All</option>
+      <option>Amazon Devices</option>
+      <option>Amazon Fresh</option>
+      <option>Amazon Pharmacy</option>
+      <option>Appliances</option>
+      <option>Apps & Games</option>
+      <option>Audible Audiobooks</option>
+      <option>Baby</option>
+      <option>Beauty</option>
+    </select>
+    <FaCaretDown className="absolute right-2 text-gray-500 pointer-events-none" />
+  </div>
 
-        </div>
-      </div>
+  {/* Input Section */}
+  <input
+    type="text"
+    placeholder="Search Amazon.in"
+    className="flex-grow px-4 py-2 focus:outline-none h-full border-none"
+  />
+
+  {/* Search Button */}
+  <div className="bg-yellow-500 px-4 py-2 flex items-center justify-center cursor-pointer h-full rounded-r-md">
+    <FaSearch className="text-gray-800 h-5 w-5 cursor-pointer" />
+    {/* Search icon */}
+  </div>
+</div>
+
 
       {/* Language Preference */}
-      <div className="flex items-center space-x-2 text-sm">
-        <img src="" alt="Language Icon" className="h-5 w-5" />
+      <div className="flex items-center space-x-2 text-sm hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg"
+          alt="Indian Flag"
+          className="w-6 h-auto"
+        />
+        <Link to="/language">
         <div>
-          <label htmlFor="dropdown" className="cursor-pointer">EN</label>
+          <label htmlFor="dropdown" className="cursor-pointer">
+            EN
+          </label>
           <select
             id="dropdown"
             className="ml-1 bg-gray-900 text-white focus:outline-none"
@@ -60,32 +85,28 @@ const Navbar = () => {
             <option value="English">English</option>
             <option value="Hindi">Hindi</option>
           </select>
-        </div>
+        </div></Link>
       </div>
 
       {/* Sign-In */}
-      <div className="text-xs text-right hover:underline cursor-pointer">
-        <p>Hello, sign in</p>
-        <p className="font-semibold text-sm">Account & Lists</p>
+      <div className="text-xs text-right hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
+        <Link to="/form"><p>Hello,sign in </p>
+        <span className="font-semibold text-sm">Account & Lists</span></Link>
+        
       </div>
 
       {/* Returns & Orders */}
-      <div className="text-xs hover:underline cursor-pointer">
+      <div className="text-xs hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
         <p>Returns</p>
         <p className="font-semibold text-sm">& Orders</p>
       </div>
 
       {/* Cart */}
-      <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2">
-      {/* Other Navbar Items */}
-
-      {/* Cart Section */}
-      <div className="flex items-center space-x-1 cursor-pointer">
+      <div className="flex items-center space-x-1 cursor-pointer hover:border hover:border-gray-400 rounded-md p-2">
         <p className="font-bold text-lg">0</p>
-        <FaShoppingCart className="h-6 w-6 text-white" /> {/* Replaced img with react-icon */}
-
+        <FaShoppingCart className="h-6 w-6 text-white" />{" "}
+        {/* Replaced img with react-icon */}
       </div>
-    </div>
     </div>
   );
 };

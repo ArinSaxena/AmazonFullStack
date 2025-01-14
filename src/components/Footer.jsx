@@ -1,9 +1,20 @@
 import React from "react";
 
 const Footer = () => {
+
+  const handleClick = () =>{
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })
+  }
+
+
   return (
     <div className="bg-gray-800 text-white py-12">
-      <div className="flex items-center space-x-6">Back to top</div>
+      <div className="flex items-center justify-center space-x-6 text-2xl  bg-gray-800 text-white h-15"  onClick={handleClick}>
+        Back to top
+      </div>
       <div className="container mx-auto px-16">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -113,13 +124,22 @@ const Footer = () => {
       <div className="bg-gray-800 text-white py-12">
         <div className="container mx-auto px-6">
           {/* Top Section */}
-          <div className="flex items-center justify-center sm:flex-wrap sm:justify-center border-t border-gray-400 py-6">
+          <div className="flex items-center justify-center border-t border-gray-400 py-6">
             <div className="flex items-center space-x-6">
-              <img
-                src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-                alt="Logo"
-                className="h-10 w-auto cursor-pointer"
-              />
+              <div className="h-10 w-auto cursor-pointer">
+                <img
+                  src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                  alt="Logo"
+                  className="h-10 w-auto cursor-pointer"
+                  />
+              </div>
+
+              <button className="h-10 w-24 border-2 border-gray-400 rounded-md">
+                English
+              </button>
+              <button className="h-10 w-24 border-2 border-gray-400 rounded-md">
+                India
+              </button>
             </div>
           </div>
 
