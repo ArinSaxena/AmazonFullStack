@@ -1,16 +1,15 @@
-import React from "react";
+import CardContainer from "./CardContainer";
 import Carousel from "./Carousel";
 import LowerNavbar from "./LowerNavbar";
-import Card from "components/Card";
-import Form from "components/Form";
-import Offers from "./CardContainer";
+import ProductCardContainer from "./ProductCardContainer";
 
 const Body = () => {
   return (
     <div>
       <LowerNavbar />
       <Carousel />
-      <Offers />
+      <CardContainer />
+      <ProductCardContainer/>
 
     </div>
   );

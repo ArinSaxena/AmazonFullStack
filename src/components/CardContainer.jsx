@@ -3,7 +3,7 @@ import Card from "components/Card";
 import Laptop from "assets/Laptop.jpg";
 
 
-const Offers = () => {
+const CardContainer = () => {
   const offers = [
     {
       id: 1,
@@ -68,4 +68,4 @@ const Offers = () => {
   );
 };
 
-export default Offers;
+export default CardContainer;

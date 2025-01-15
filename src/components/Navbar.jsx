@@ -102,11 +102,14 @@ const Navbar = () => {
       </div>
 
       {/* Cart */}
+      <Link to="/cart">
+
       <div className="flex items-center space-x-1 cursor-pointer hover:border hover:border-gray-400 rounded-md p-2">
         <p className="font-bold text-lg">0</p>
         <FaShoppingCart className="h-6 w-6 text-white" />{" "}
         {/* Replaced img with react-icon */}
       </div>
+      </Link>
     </div>
   );
 };
