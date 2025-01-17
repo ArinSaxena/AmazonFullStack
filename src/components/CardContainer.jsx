@@ -3,6 +3,7 @@ import Card from "components/Card";
 import Laptop from "assets/Laptop.jpg";
 
 
+
 const CardContainer = () => {
   const offers = [
     {
@@ -56,7 +57,7 @@ const CardContainer = () => {
   ];
   return (
     <div>
-      <div className="relative py-8 bg-gray-100">
+      <div className="absolute py-8 bg-gray-100">
         {/* Offer Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
           {offers.map((offer) => (

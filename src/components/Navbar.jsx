@@ -11,13 +11,14 @@ const Navbar = () => {
   return (
     <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2 h-14">
       {/* Amazon Logo */}
-      <div className="flex items-center flex-grow sm:flex-grow-0 hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
+      <Link to="/"><div className="flex items-center flex-grow sm:flex-grow-0 hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
         <img
           src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
           alt="Logo"
           className="h-10 w-auto"
         />
       </div>
+      </Link>
 
       {/* Location */}
       <div className="flex items-center space-x-2 hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
@@ -109,7 +110,7 @@ const Navbar = () => {
         <FaShoppingCart className="h-6 w-6 text-white" />{" "}
         {/* Replaced img with react-icon */}
       </div>
-      </Link>
+      </Link>    
     </div>
   );
 };

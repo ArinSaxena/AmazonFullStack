@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "utility/cartSlice";
 
 const ProductCard = ({ card }) => {
+
+  const dispatch = useDispatch();
+
+  
+// dispatch(addItem(card.id));  
   const {
     image,
     title,
@@ -19,11 +26,13 @@ const ProductCard = ({ card }) => {
   return (
     <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-md">
       {/* Product Image */}
+      
       <img
         src={image}
         alt={title}
         className="rounded-t-lg w-full h-48 object-cover"
       />
+      
 
       {/* Product Details */}
       <div className="p-4">

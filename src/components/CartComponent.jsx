@@ -5,20 +5,19 @@ const CartComponent = () => {
     {
       id: 1,
       title: "AO Smith HSE-SHS-025 Storage 25 Litre Water Heater",
-      image: "https://via.placeholder.com/150", // Replace with actual image
+      image: "https://via.placeholder.com/150",
       price: 7799,
       quantity: 1,
     },
     {
       id: 2,
       title: "Instant Water Heater 15 Litre - High-Efficiency",
-      image: "https://via.placeholder.com/150", // Replace with actual image
+      image: "https://via.placeholder.com/150",
       price: 8999,
       quantity: 1,
     },
   ]);
 
-  // Function to handle quantity change
   const handleQuantityChange = (id, increment) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
@@ -29,12 +28,10 @@ const CartComponent = () => {
     );
   };
 
-  // Function to remove item
   const handleRemoveItem = (id) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  // Calculate total price
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -42,58 +39,53 @@ const CartComponent = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
-
-      {/* Cart Items */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-6">
+      <h1 className="text-3xl font-bold mb-6">Your Amazon Cart</h1>
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex-1 bg-white p-4 rounded-lg shadow-md">
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex items-center bg-white p-4 rounded-lg shadow-md"
+              className="flex items-start space-x-4 border-b pb-4 mb-4 last:border-none last:pb-0 last:mb-0"
             >
-              {/* Product Image */}
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-24 h-24 object-cover rounded-lg"
+                className="w-24 h-24 object-cover"
               />
-
-              {/* Product Details */}
-              <div className="flex-1 ml-4">
+              <div className="flex-1">
                 <h2 className="text-lg font-semibold">{item.title}</h2>
                 <p className="text-sm text-gray-600">₹{item.price.toLocaleString()}</p>
-                <div className="flex items-center mt-2">
-                  {/* Quantity Controls */}
+                <div className="flex items-center mt-2 space-x-2">
                   <button
                     onClick={() => handleQuantityChange(item.id, -1)}
-                    className="px-2 py-1 border rounded-l-md bg-gray-100 hover:bg-gray-200"
+                    className="px-3 py-1 border rounded-l-md bg-gray-200 hover:bg-gray-300"
                   >
                     -
                   </button>
-                  <span className="px-4 py-1 border-t border-b">
-                    {item.quantity}
-                  </span>
+                  <span className="px-4 py-1 border">{item.quantity}</span>
                   <button
                     onClick={() => handleQuantityChange(item.id, 1)}
-                    className="px-2 py-1 border rounded-r-md bg-gray-100 hover:bg-gray-200"
+                    className="px-3 py-1 border rounded-r-md bg-gray-200 hover:bg-gray-300"
                   >
                     +
                   </button>
                 </div>
-                <button
-                  onClick={() => handleRemoveItem(item.id)}
-                  className="mt-2 text-sm text-red-500 hover:underline"
-                >
-                  Remove
-                </button>
+                <div className="flex space-x-4 mt-2">
+                  <button
+                    onClick={() => handleRemoveItem(item.id)}
+                    className="text-red-500 text-sm hover:underline"
+                  >
+                    Remove
+                  </button>
+                  <button className="text-sm text-blue-500 hover:underline">
+                    Save for Later
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* Order Summary */}
-        <div className="bg-white p-4 rounded-lg shadow-md">
+        <div className="w-full lg:w-1/3 bg-white p-4 rounded-lg shadow-md">
           <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
           <div className="space-y-2">
             <div className="flex justify-between">
@@ -103,6 +95,10 @@ const CartComponent = () => {
             <div className="flex justify-between">
               <span>Shipping</span>
               <span className="text-green-500">FREE</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-500">
+              <span>Total Savings</span>
+              <span>₹0</span>
             </div>
           </div>
           <hr className="my-4" />

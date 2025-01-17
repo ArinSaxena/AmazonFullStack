@@ -1,17 +1,20 @@
 import Footer from "components/Footer";
-import Form from "components/Form";
 import Home from "pages/Home";
 
 import LanguageSettings from "components/LanguageSettings";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Navbar from "components/Navbar";
-import Cart from "pages/Cart";
+import Form from "components/Form";
 
-function navBarWrapper(element){
-  return <>
-  <Navbar />
-  {element}
-  </>
+import Cart from "pages/Cart";
+import {Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+function navBarWrapper(element) {
+  return (
+    <>
+      <Navbar />
+      {element}
+    </>
+  );
 }
 
 function App() {
@@ -20,14 +23,15 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={navBarWrapper(<Home />)} />
-          
-          <Route path="/language" element={<LanguageSettings />}></Route>
-          <Route path="/cart" element={<Cart/>}></Route>
+          <Route path="/form" element={<Form />} />
+
+
+          <Route path="/language" element={navBarWrapper(<LanguageSettings />)}></Route>
+          <Route path="/cart" element={navBarWrapper(<Cart />)}></Route>
         </Routes>
 
         <Footer />
       </Router>
-
     </div>
   );
 }

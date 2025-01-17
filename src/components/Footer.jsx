@@ -1,198 +1,124 @@
 import React from "react";
 
 const Footer = () => {
-
-  const handleClick = () =>{
+  const handleScrollToTop = () => {
     window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    })
-  }
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
+  const footerLinks = [
+    {
+      title: "Get to Know Us",
+      links: ["About Us", "Careers", "Press Releases", "Amazon Cares"],
+    },
+    {
+      title: "Connect with Us",
+      links: ["Facebook", "Twitter", "Instagram", "LinkedIn"],
+    },
+    {
+      title: "Make Money with Us",
+      links: [
+        "Sell on Amazon",
+        "Sell under Amazon Accelerator",
+        "Amazon Global Selling",
+        "Become an Affiliate",
+      ],
+    },
+    {
+      title: "Let Us Help You",
+      links: [
+        "Your Account",
+        "Returns & Replacements",
+        "Help",
+        "Shipping Rates & Policies",
+      ],
+    },
+  ];
+
+  const additionalLinks = [
+    {
+      title: "AbeBooks",
+      description: "Books, art & collectibles",
+    },
+    {
+      title: "Amazon Web Services",
+      description: "Scalable Cloud Computing Services",
+    },
+    {
+      title: "Audible",
+      description: "Download Audiobooks",
+    },
+    {
+      title: "IMDb",
+      description: "Movies, TV & Celebrities",
+    },
+  ];
 
   return (
-    <div className="bg-gray-800 text-white py-12">
-      <div className="flex items-center justify-center space-x-6 text-2xl  bg-gray-800 text-white h-15"  onClick={handleClick}>
+    <div className="bg-gray-800 text-white">
+      {/* Back to Top Button */}
+      <div
+        className="flex items-center justify-center py-4 bg-gray-700 cursor-pointer hover:bg-gray-700"
+        onClick={handleScrollToTop}
+      >
         Back to top
       </div>
-      <div className="container mx-auto px-16">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h5 className="text-lg font-semibold mb-4">Get to Know Us</h5>
-            <ul>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Press Releases
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Amazon Cares
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="text-lg font-semibold mb-4">Connect with Us</h5>
-            <ul>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="text-lg font-semibold mb-4">Make Money with Us</h5>
-            <ul>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Sell on Amazon
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Sell under Amazon Accelerator
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Amazon Global Selling
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Become an Affiliate
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="text-lg font-semibold mb-4">Let Us Help You</h5>
-            <ul>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Your Account
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Returns & Replacements
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Help
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm hover:text-gray-400">
-                  Shipping Rates & Policies
-                </a>
-              </li>
-            </ul>
-          </div>
+
+      {/* Main Footer Links */}
+      <div className="container mx-auto px-8 lg:px-16 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {footerLinks.map((section, index) => (
+            <div key={index}>
+              <h5 className="text-lg font-semibold mb-4">{section.title}</h5>
+              <ul>
+                {section.links.map((link, idx) => (
+                  <li key={idx} className="mb-2">
+                    <a href="#" className="text-sm hover:text-gray-400">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto px-6">
-          {/* Top Section */}
-          <div className="flex items-center justify-center border-t border-gray-400 py-6">
-            <div className="flex items-center space-x-6">
-              <div className="h-10 w-auto cursor-pointer">
-                <img
-                  src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-                  alt="Logo"
-                  className="h-10 w-auto cursor-pointer"
-                  />
-              </div>
+      {/* Additional Links */}
+      <div className="bg-gray-900 py-8">
+        <div className="container mx-auto px-8 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {additionalLinks.map((item, index) => (
+            <div key={index}>
+              <h5 className="text-lg font-semibold mb-4">{item.title}</h5>
+              <p className="text-sm hover:text-gray-400">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
-              <button className="h-10 w-24 border-2 border-gray-400 rounded-md">
+      {/* Footer Bottom Section */}
+      <div className="bg-gray-800 py-6 border-t border-gray-700">
+        <div className="container mx-auto px-8 lg:px-16">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            {/* Logo and Buttons */}
+            <div className="flex items-center gap-4">
+              <img
+                src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                alt="Amazon Logo"
+                className="h-10 w-auto"
+              />
+              <button className="h-10 w-24 border-2 border-gray-400 rounded-md text-sm">
                 English
               </button>
-              <button className="h-10 w-24 border-2 border-gray-400 rounded-md">
+              <button className="h-10 w-24 border-2 border-gray-400 rounded-md text-sm">
                 India
               </button>
             </div>
-          </div>
 
-          {/* Main Footer Links */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
-            <div>
-              <h5 className="text-lg font-semibold mb-4">AbeBooks</h5>
-              <ul>
-                <li>
-                  <a href="#" className="text-sm hover:text-gray-400">
-                    Books, art & collectibles
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-lg font-semibold mb-4">
-                Amazon Web Services
-              </h5>
-              <ul>
-                <li>
-                  <a href="#" className="text-sm hover:text-gray-400">
-                    Scalable Cloud Computing Services
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-lg font-semibold mb-4">Audible</h5>
-              <ul>
-                <li>
-                  <a href="#" className="text-sm hover:text-gray-400">
-                    Download Audiobooks
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-lg font-semibold mb-4">IMDb</h5>
-              <ul>
-                <li>
-                  <a href="#" className="text-sm hover:text-gray-400">
-                    Movies, TV & Celebrities
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="mt-12 text-center text-sm">
-            <p>&copy; 2025 Your Company. All Rights Reserved.</p>
-            <div className="mt-4 flex justify-center space-x-6">
+            {/* Footer Links */}
+            <div className="flex gap-4">
               <a href="#" className="text-sm hover:text-gray-400">
                 Privacy
               </a>
@@ -203,6 +129,9 @@ const Footer = () => {
                 Help
               </a>
             </div>
+          </div>
+          <div className="text-center text-sm mt-4">
+            &copy; 2025 Your Company. All Rights Reserved.
           </div>
         </div>
       </div>

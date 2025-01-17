@@ -32,10 +32,10 @@ const Carousel = () => {
           {images.map((image, index) => (
   <div key={index} className="relative flex-shrink-0 w-full h-full">
     {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent z-10"></div>
+    <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
     
     {/* Image */}
-    <img
+    <img 
       src={image}
       alt={`Background ${index + 1}`}
       className="w-full h-full object-cover z-0"
