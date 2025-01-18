@@ -91,7 +91,7 @@ const Navbar = () => {
 
       {/* Sign-In */}
       <div className="text-xs text-right hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
-        <Link to="/form"><p>Hello,sign in </p>
+        <Link to="/login"><p>Hello,sign in </p>
         <span className="font-semibold text-sm">Account & Lists</span></Link>
         
       </div>
