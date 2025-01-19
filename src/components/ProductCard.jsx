@@ -7,6 +7,12 @@ const ProductCard = ({ card }) => {
 
   const dispatch = useDispatch();
 
+
+  const handleSubmit = () =>{
+    dispatch(addItem({card}));
+
+  }
+
   
 // dispatch(addItem(card.id));  
   const {
@@ -30,7 +36,7 @@ const ProductCard = ({ card }) => {
       <img
         src={image}
         alt={title}
-        className="rounded-t-lg w-full h-48 object-cover"
+        className="rounded-t-lg w-full h-48 object-contain mt-12"
       />
       
 
@@ -76,7 +82,7 @@ const ProductCard = ({ card }) => {
 
         {/* Action Buttons */}
         <div className="mt-4 flex space-x-2">
-          <button className="flex-1 py-2 bg-yellow-500 text-white font-semibold rounded hover:bg-yellow-600">
+          <button className="flex-1 py-2 bg-yellow-500 text-white font-semibold rounded hover:bg-yellow-600"  onClick={handleSubmit}>
             Add to Cart
           </button>
         </div>
@@ -86,3 +92,6 @@ const ProductCard = ({ card }) => {
 };
 
 export default ProductCard;
+
+
+

@@ -17,6 +17,7 @@ const ProductCardContainer = () => {
       originalPrice: 14400,
       delivery: "Get it by Monday, January 20",
       freeDelivery: true,
+      quantity:1,
     },
     {
       id: 2,
@@ -31,6 +32,8 @@ const ProductCardContainer = () => {
       originalPrice: 15000,
       delivery: "Get it by Tuesday, January 21",
       freeDelivery: true,
+      quantity:1,
+
     },
     {
       id: 3,
@@ -45,6 +48,8 @@ const ProductCardContainer = () => {
       originalPrice: 10000,
       delivery: "Get it by Wednesday, January 22",
       freeDelivery: false,
+      quantity:1,
+
     },
     {
       id: 4,
@@ -59,6 +64,8 @@ const ProductCardContainer = () => {
       originalPrice: 16000,
       delivery: "Get it by Thursday, January 23",
       freeDelivery: true,
+      quantity:1,
+
     },
     {
         id: 5,
@@ -73,6 +80,8 @@ const ProductCardContainer = () => {
         originalPrice: 14400,
         delivery: "Get it by Monday, January 20",
         freeDelivery: true,
+        quantity:1,
+
       },
       {
         id: 6,
@@ -87,6 +96,8 @@ const ProductCardContainer = () => {
         originalPrice: 15000,
         delivery: "Get it by Tuesday, January 21",
         freeDelivery: true,
+        quantity:1,
+
       },
       {
         id: 7,
@@ -100,7 +111,9 @@ const ProductCardContainer = () => {
         price: 6499,
         originalPrice: 10000,
         delivery: "Get it by Wednesday, January 22",
-        freeDelivery: false,
+        freeDelivery: true,
+        quantity:1,
+
       },
       {
         id: 8,
@@ -115,6 +128,8 @@ const ProductCardContainer = () => {
         originalPrice: 16000,
         delivery: "Get it by Thursday, January 23",
         freeDelivery: true,
+        quantity:1,
+
       },
   ];
 

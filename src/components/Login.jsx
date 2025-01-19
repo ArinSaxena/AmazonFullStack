@@ -1,12 +1,41 @@
 // src/components/LoginPage.jsx
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "utility/authSlice";
+import axios from "axios";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [username, setUserName] = useState("");
+  const [password, setUserPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setError("");
+    axios
+      .post("http://localhost:6061/login", { username, password })
+      .then((response) => {
+        console.log(response);
+
+        dispatch(setCurrentUser({ username }));
+        navigate("/profile");
+      })
+      .catch((err) => console.log(err));
+
+    
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       {/* Container */}
-      <div className="w-full max-w-sm p-6 bg-white shadow-md rounded-lg">
+      <form
+        className="w-full max-w-sm p-6 bg-white shadow-md rounded-lg"
+        onSubmit={handleLogin}
+      >
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <img
@@ -17,10 +46,10 @@ const LoginPage = () => {
         </div>
 
         {/* Login Form */}
-        <form className="space-y-4">
+        <div className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-800">Sign-In</h2>
 
-          {/* Email Input */}
+          {/* User Name Input */}
           <div>
             <label
               htmlFor="name"
@@ -31,6 +60,8 @@ const LoginPage = () => {
             <input
               type="text"
               id="name"
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
               className="w-full px-3 py-2 mt-1 border rounded-md focus:ring focus:ring-yellow-500 focus:outline-none"
               placeholder="Enter your name"
             />
@@ -47,6 +78,8 @@ const LoginPage = () => {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setUserPassword(e.target.value)}
               className="w-full px-3 py-2 mt-1 border rounded-md focus:ring focus:ring-yellow-500 focus:outline-none"
               placeholder="Enter your password"
             />
@@ -59,7 +92,7 @@ const LoginPage = () => {
           >
             Sign In
           </button>
-        </form>
+        </div>
 
         {/* Create Account Link */}
         <div className="mt-6 text-center">
@@ -70,7 +103,7 @@ const LoginPage = () => {
             </Link>
           </p>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

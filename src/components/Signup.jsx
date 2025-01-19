@@ -1,34 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    phone: '',
-  });
+  const navigate = useNavigate();
+  // const [formData, setFormData] = useState({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [error, setError] = useState("");
+  const [username, setUserName] = useState("");
+  const [password, setUserPassword] = useState("");
+  const [email, setEmail] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState({ password: "" });
+
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData); // Handle the form submission here
+    setError("");
+    console.log(username,password);
+    axios
+      .post("http://localhost:6061/register", { username, password })
+      .then((response) => {
+        console.log(response);
+
+        navigate("/login");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold text-center mb-6">Create account</h2>
+        <h2 className="text-2xl font-semibold text-center mb-6">
+          Create account
+        </h2>
         <form onSubmit={handleSubmit}>
           {/* Full Name */}
           <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
               Your name
             </label>
             <input
@@ -36,33 +53,20 @@ const Form = () => {
               id="name"
               name="name"
               placeholder="First and last name"
-              value={formData.name}
-              onChange={handleChange}
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
               required
               className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
             />
           </div>
 
-          {/* Email */}
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email (mobile for some countries)
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email or mobile phone number"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            />
-          </div>
-
+         
           {/* Password */}
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input
@@ -70,29 +74,20 @@ const Form = () => {
               id="password"
               name="password"
               placeholder="At least 6 characters"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setUserPassword(e.target.value)}
               required
               className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
             />
-            <small className="text-xs text-gray-600">Password must be at least 6 characters long.</small>
+            <small className="text-xs text-gray-600">
+              Password must be at least 6 characters long.
+            </small>
           </div>
 
-          {/* Mobile Number */}
-          <div className="mb-6">
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-              Mobile number (optional)
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="Mobile number"
-              value={formData.phone}
-              onChange={handleChange}
-              className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            />
-          </div>
+          
+
+          {/* Display error message if passwords don't match */}
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
           {/* Submit Button */}
           <button
@@ -106,14 +101,15 @@ const Form = () => {
         {/* Terms and Conditions */}
         <div className="mt-4 text-xs text-center text-gray-600">
           <p>
-            By creating an account, you agree to Amazon's{' '}
+            By creating an account, you agree to Amazon's{" "}
             <a href="#" className="text-blue-600 hover:underline">
               Conditions of Use
-            </a>{' '}
-            and{' '}
+            </a>{" "}
+            and{" "}
             <a href="#" className="text-blue-600 hover:underline">
               Privacy Notice
-            </a>.
+            </a>
+            .
           </p>
         </div>
       </div>
@@ -122,3 +118,6 @@ const Form = () => {
 };
 
 export default Form;
+
+
+
