@@ -15,18 +15,20 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     axios
       .post("http://localhost:6061/login", { username, password })
       .then((response) => {
-        console.log(response);
-
-        dispatch(setCurrentUser({ username }));
+        const { token, refresh_token } = response?.data;
+        dispatch(setCurrentUser({ token, refresh_token, username }));
         navigate("/profile");
+        console.log(response);
       })
-      .catch((err) => console.log(err));
-
-    
+      .catch((err) => {
+        const errMessage =
+          err?.response?.data?.message || "Something went wrong";
+        setError(errMessage);
+      });
   };
 
   return (
@@ -93,6 +95,8 @@ const LoginPage = () => {
             Sign In
           </button>
         </div>
+
+        {error && <div className="text-red-500">{error}</div>}
 
         {/* Create Account Link */}
         <div className="mt-6 text-center">

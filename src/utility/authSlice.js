@@ -11,7 +11,7 @@ const authSlice = createSlice({
     state.userData = user;
     },
     removeCurrentUser: (state) => {
-      state.userData=" "
+      state.userData=""
     },
   },
 });

@@ -17,7 +17,7 @@ const Profile = () => {
     <div>
       <h1> User Profile</h1>
       <h2>Hii {user}</h2>
-      <div>Click to <Link to={{}} onClick={handleLogout}>Logout</Link></div>
+      <div onClick={handleLogout}>Logout</div>
     </div>
   );
 };
