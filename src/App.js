@@ -6,14 +6,10 @@ import Navbar from "components/Navbar";
 import Profile from "components/Profile";
 import Signup from "components/Signup";
 
-import axios from "axios";
 import Cart from "pages/Cart";
 import Login from "pages/Login";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-
-//IF USER CHANGES , CHANGE THE CART
 
 function navBarWrapper(element) {
   return (

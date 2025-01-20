@@ -1,15 +1,17 @@
-import React from "react";
-import {
-  FaShoppingCart,
-  FaSearch,
-  FaMapMarkerAlt,
-  FaCaretDown,
-} from "react-icons/fa";
+import React, { use, useState } from "react";
+import {FaShoppingCart,FaSearch,FaMapMarkerAlt,FaCaretDown,} from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const items = useSelector((state) => state.cart.cartItems)
+  const cartlength = items.length;
+  const [isLanguageDropdownVisible, setIsLanguageDropdownVisible] = useState(false);
+
+  const languages = ["English", "Hindi", "Spanish", "French", "German"];  
   return (
-    <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2 h-14">
+
+    <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2 h-14 w-full z-10 ">
       {/* Amazon Logo */}
       <Link to="/"><div className="flex items-center flex-grow sm:flex-grow-0 hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
         <img
@@ -65,28 +67,37 @@ const Navbar = () => {
 
 
       {/* Language Preference */}
-      <div className="flex items-center space-x-2 text-sm hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
+      {/* Language Preference */}
+      <div
+        className="relative flex items-center space-x-2 text-sm hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer"
+        onMouseEnter={() => setIsLanguageDropdownVisible(true)}
+        onMouseLeave={() => setIsLanguageDropdownVisible(false)}
+      >
+        <Link to="/language">
         <img
           src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg"
           alt="Indian Flag"
           className="w-6 h-auto"
         />
-        <Link to="/language">
-        <div>
-          <label htmlFor="dropdown" className="cursor-pointer">
-            EN
-          </label>
-          <select
-            id="dropdown"
-            className="ml-1 bg-gray-900 text-white focus:outline-none"
-          >
-            <option value="" disabled>
-              Languages
-            </option>
-            <option value="English">English</option>
-            <option value="Hindi">Hindi</option>
-          </select>
-        </div></Link>
+        <div className="flex items-center">
+          <label className="cursor-pointer">EN</label>
+          <FaCaretDown className="ml-1 text-gray-500" />
+        </div>
+
+        {/* Language Dropdown */}
+        {isLanguageDropdownVisible && (
+          <div className="absolute top-10 left-0 w-40 bg-white border border-gray-200 shadow-md rounded-md p-2 z-50">
+            {languages.map((language, index) => (
+              <div
+                key={index}
+                className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+              >
+                {language}
+              </div>
+            ))}
+          </div>
+        )}
+        </Link>
       </div>
 
       {/* Sign-In */}
@@ -106,7 +117,7 @@ const Navbar = () => {
       <Link to="/cart">
 
       <div className="flex items-center space-x-1 cursor-pointer hover:border hover:border-gray-400 rounded-md p-2">
-        <p className="font-bold text-lg">0</p>
+        <p className="font-bold text-lg">{cartlength}</p>
         <FaShoppingCart className="h-6 w-6 text-white" />{" "}
         {/* Replaced img with react-icon */}
       </div>

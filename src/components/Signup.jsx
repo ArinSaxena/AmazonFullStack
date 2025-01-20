@@ -4,25 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const navigate = useNavigate();
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // });
 
   const [error, setError] = useState("");
   const [username, setUserName] = useState("");
   const [password, setUserPassword] = useState("");
   const [email, setEmail] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState({ password: "" });
-
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    console.log(username,password);
+    console.log(username, password);
     axios
       .post("http://localhost:6061/register", { username, password })
       .then((response) => {
@@ -60,7 +51,6 @@ const Form = () => {
             />
           </div>
 
-         
           {/* Password */}
           <div className="mb-4">
             <label
@@ -83,8 +73,6 @@ const Form = () => {
               Password must be at least 6 characters long.
             </small>
           </div>
-
-          
 
           {/* Display error message if passwords don't match */}
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -118,6 +106,3 @@ const Form = () => {
 };
 
 export default Form;
-
-
-

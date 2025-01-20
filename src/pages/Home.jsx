@@ -5,7 +5,7 @@ import Carousel from "components/Carousel";
 
 const Home = () => {
   return (
-    <div>
+    <div className="relative">
       <Body />
     </div>
   );

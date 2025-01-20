@@ -20,7 +20,10 @@ const LoginPage = () => {
       .post("http://localhost:6061/login", { username, password })
       .then((response) => {
         const { token, refresh_token } = response?.data;
-        dispatch(setCurrentUser({ token, refresh_token, username }));
+        dispatch(setCurrentUser({username }));
+        localStorage.setItem('token', token)
+        localStorage.setItem('refresh_token', refresh_token)
+
         navigate("/profile");
         console.log(response);
       })

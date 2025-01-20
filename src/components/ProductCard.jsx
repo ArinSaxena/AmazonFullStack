@@ -36,7 +36,7 @@ const ProductCard = ({ card }) => {
       <img
         src={image}
         alt={title}
-        className="rounded-t-lg w-full h-48 object-contain mt-12"
+        className="rounded-t-lg w-full h-48 object-contain p-3"
       />
       
 

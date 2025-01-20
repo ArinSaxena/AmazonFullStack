@@ -8,20 +8,37 @@ const Profile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userData?.username);
 
-  const handleLogout = () =>{
+  const handleLogout = () => {
     dispatch(removeCurrentUser());
-    navigate('/login')
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('refresh_token')
+    navigate('/login');
+  };
 
-  }
   return (
-    <div>
-      <h1> User Profile</h1>
-      <h2>Hii {user}</h2>
-      <div onClick={handleLogout}>Logout</div>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-6 bg-white shadow-lg rounded-lg">
+        <h1 className="text-2xl font-bold text-center text-gray-800">User Profile</h1>
+        <h2 className="mt-4 text-lg text-center text-gray-600">
+          Hi, <span className="font-semibold text-blue-600">{user}</span>
+        </h2>
+        <div className="flex flex-col mt-6">
+          <button
+            onClick={handleLogout}
+            className="py-2 px-4 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200"
+          >
+            Logout
+          </button>
+          <Link
+            to="/"
+            className="mt-4 text-center text-sm text-gray-500 hover:text-gray-700"
+          >
+            Go back to Home
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Profile;
-
-
