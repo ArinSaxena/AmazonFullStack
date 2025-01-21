@@ -11,7 +11,7 @@ const Navbar = () => {
   const languages = ["English", "Hindi", "Spanish", "French", "German"];  
   return (
 
-    <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2 h-14 w-full z-10 ">
+    <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2 h-14 w-full z-[100] sticky top-0 ">
       {/* Amazon Logo */}
       <Link to="/"><div className="flex items-center flex-grow sm:flex-grow-0 hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
         <img

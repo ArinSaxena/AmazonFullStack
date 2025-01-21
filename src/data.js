@@ -19,6 +19,7 @@ import Laptop from "assets/Laptop.jpg";
       delivery: "Get it by Monday, January 20",
       freeDelivery: true,
       quantity:1,
+      selected:false
     },
     {
       id: 2,
@@ -34,6 +35,7 @@ import Laptop from "assets/Laptop.jpg";
       delivery: "Get it by Tuesday, January 21",
       freeDelivery: true,
       quantity:1,
+      selected:false
 
     },
     {
@@ -50,6 +52,7 @@ import Laptop from "assets/Laptop.jpg";
       delivery: "Get it by Wednesday, January 22",
       freeDelivery: true,
       quantity:1,
+      selected:false
 
     },
     {
@@ -66,6 +69,7 @@ import Laptop from "assets/Laptop.jpg";
       delivery: "Get it by Thursday, January 23",
       freeDelivery: true,
       quantity:1,
+      selected:false
 
     },
     {
@@ -82,6 +86,7 @@ import Laptop from "assets/Laptop.jpg";
         delivery: "Get it by Monday, January 20",
         freeDelivery: true,
         quantity:1,
+        selected:false
 
       },
       {
@@ -98,6 +103,7 @@ import Laptop from "assets/Laptop.jpg";
         delivery: "Get it by Tuesday, January 21",
         freeDelivery: true,
         quantity:1,
+        selected:false
 
       },
       {
@@ -114,6 +120,7 @@ import Laptop from "assets/Laptop.jpg";
         delivery: "Get it by Wednesday, January 22",
         freeDelivery: true,
         quantity:1,
+        selected:false
 
       },
       {
@@ -130,6 +137,7 @@ import Laptop from "assets/Laptop.jpg";
         delivery: "Get it by Thursday, January 23",
         freeDelivery: true,
         quantity:1,
+        selected:false
 
       },
   ];

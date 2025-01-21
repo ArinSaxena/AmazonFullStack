@@ -12,9 +12,9 @@ const CardContainer = () => {
       <div className="absolute top-0 z-10 w-full mt-[340px]">
 
         {/* Offer Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-10" >
           {offers.map((offer) => (
-            <Card offer={offer} />
+            <Card key={offer.id} offer={offer} />
           ))}
         </div>
       </div>

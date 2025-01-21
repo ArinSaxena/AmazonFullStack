@@ -9,7 +9,7 @@ const ProductCard = ({ card }) => {
 
 
   const handleSubmit = () =>{
-    dispatch(addItem({card}));
+    dispatch(addItem({...card}));
 
   }
 
@@ -82,7 +82,8 @@ const ProductCard = ({ card }) => {
 
         {/* Action Buttons */}
         <div className="mt-4 flex space-x-2">
-          <button className="flex-1 py-2 bg-yellow-500 text-white font-semibold rounded hover:bg-yellow-600"  onClick={handleSubmit}>
+          <button className="flex-1 py-2 bg-yellow-500 text-white font-semibold rounded hover:bg-yellow-600"
+            onClick={handleSubmit}>
             Add to Cart
           </button>
         </div>

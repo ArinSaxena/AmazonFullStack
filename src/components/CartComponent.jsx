@@ -1,52 +1,40 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removeItem,
+  decreaseItem,
+  increaseItem,
+  toggleItemSelection,
+} from "utility/cartSlice";
 
 const CartComponent = () => {
   // Get cart items from Redux state
-  const cartItemsFromState = useSelector((state) => state.cart.cartItems);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
 
-  // Maintain cart items in local state for dynamic updates
-  const [cartItems, setCartItems] = useState(
-    cartItemsFromState.map((item) => ({ ...item, selected: false }))
-  );
+  const [toggle, setToggle] = useState("false");
 
-  // Increment item quantity
-  const incrementQuantity = (id) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.card.id === id ? { ...item, card: { ...item.card, quantity: item.card.quantity + 1 } } : item
-      )
-    );
-  };
+  const dispatch = useDispatch();
 
-  // Decrement item quantity
-  const decrementQuantity = (id) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.card.id === id && item.card.quantity > 1
-          ? { ...item, card: { ...item.card, quantity: item.card.quantity - 1 } }
-          : item
-      )
-    );
+  const handleToggle = (id) => {
+    dispatch(toggleItemSelection(id));
   };
 
   // Remove item from cart
-  const removeItem = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.card.id !== id));
+  const removeItemFromCart = (id) => {
+    console.log(id, "id");
+    dispatch(removeItem(id));
   };
 
-  // Toggle item selection
-  const toggleItemSelection = (id) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.card.id === id ? { ...item, selected: !item.selected } : item
-      )
-    );
+  const incrementQuantity = (id) => {
+    dispatch(increaseItem(id));
+  };
+  const decrementQuantity = (id) => {
+    dispatch(decreaseItem(id));
   };
 
-  // Calculate total price
   const totalPrice = cartItems.reduce(
-    (total, item) => total + item.card.price * item.card.quantity,
+    (total, item) => total + item.price * item.quantity,
     0
   );
 
@@ -58,35 +46,35 @@ const CartComponent = () => {
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div
-                key={item.card.id}
+                key={item.id}
                 className="flex items-start space-x-4 border-b pb-4 mb-4 last:border-none last:pb-0 last:mb-0"
               >
                 <input
                   type="checkbox"
                   checked={item.selected}
-                  onChange={() => toggleItemSelection(item.card.id)}
+                  onChange={() => handleToggle(item.id)}
                   className="mt-2"
                 />
                 <img
-                  src={item.card.image}
-                  alt={item.card.title}
+                  src={item.image}
+                  alt={item.title}
                   className="w-24 h-24 object-cover"
                 />
                 <div className="flex-1">
-                  <h2 className="text-lg font-semibold">{item.card.title}</h2>
+                  <h2 className="text-lg font-semibold">{item.title}</h2>
                   <p className="text-sm text-gray-600">
-                    ₹{item.card.price ? item.card.price.toLocaleString() : "0"}
+                    ₹{item.price ? item.price.toLocaleString() : "0"}
                   </p>
                   <div className="flex items-center mt-2 space-x-2">
                     <button
-                      onClick={() => decrementQuantity(item.card.id)}
+                      onClick={() => decrementQuantity(item.id)}
                       className="px-3 py-1 border rounded-l-md bg-gray-200 hover:bg-gray-300"
                     >
                       -
                     </button>
-                    <span className="px-4 py-1 border">{item.card.quantity}</span>
+                    <span className="px-4 py-1 border">{item.quantity}</span>
                     <button
-                      onClick={() => incrementQuantity(item.card.id)}
+                      onClick={() => incrementQuantity(item.id)}
                       className="px-3 py-1 border rounded-r-md bg-gray-200 hover:bg-gray-300"
                     >
                       +
@@ -94,7 +82,7 @@ const CartComponent = () => {
                   </div>
                   <div className="flex space-x-4 mt-2">
                     <button
-                      onClick={() => removeItem(item.card.id)}
+                      onClick={() => removeItemFromCart(item.id)}
                       className="text-red-500 text-sm hover:underline"
                     >
                       Remove
