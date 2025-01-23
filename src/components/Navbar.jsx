@@ -7,8 +7,12 @@ const Navbar = () => {
   const items = useSelector((state) => state.cart.cartItems)
   const cartlength = items.length;
   const [isLanguageDropdownVisible, setIsLanguageDropdownVisible] = useState(false);
+  const [isAccountDropdownVisible, setIsAccountDropdownVisible] = useState(false);
+
 
   const languages = ["English", "Hindi", "Spanish", "French", "German"];  
+  const Accounts = ["yous Account", "Your Orders", "Your wish list", "Your Recommendations", "German"];  
+
   return (
 
     <div className="bg-gray-900 text-white flex items-center justify-between px-4 py-2 h-14 w-full z-[100] sticky top-0 ">
@@ -17,7 +21,7 @@ const Navbar = () => {
         <img
           src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
           alt="Logo"
-          className="h-10 w-auto"
+          className="h-8 md:h-10 w-auto"
         />
       </div>
       </Link>
@@ -34,7 +38,8 @@ const Navbar = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="flex gap-0 flex-grow items-center mx-5 text-black border border-gray-400 rounded-md overflow-hidden hover:shadow-md h-9">
+      <div className="flex gap-0 flex-grow items-center mx-5 text-black border border-gray-400 rounded-md overflow-hidden hover:shadow-md h-9
+      w-auto">
   {/* Dropdown Section */}
   <div className="relative flex items-center w-14 h-full bg-gray-200 rounded-l-md">
     <select className="bg-gray-200 px-4 py-2 text-sm font-semibold focus:outline-none cursor-pointer appearance-none w-full h-9">
@@ -86,7 +91,7 @@ const Navbar = () => {
 
         {/* Language Dropdown */}
         {isLanguageDropdownVisible && (
-          <div className="absolute top-10 left-0 w-40 bg-white border border-gray-200 shadow-md rounded-md p-2 z-50">
+          <div className="absolute top-14 left-0 w-40 bg-white border border-gray-200 shadow-md rounded-md p-2 z-50">
             {languages.map((language, index) => (
               <div
                 key={index}
@@ -101,11 +106,32 @@ const Navbar = () => {
       </div>
 
       {/* Sign-In */}
-      <div className="text-xs text-right hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
+      <div
+        className="relative flex items-center space-x-2 text-sm hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer"
+        onMouseEnter={() => setIsAccountDropdownVisible(true)}
+        onMouseLeave={() => setIsAccountDropdownVisible(false)}
+      >
+      
+      {/* <div className="text-xs text-right hover:border-gray-400 rounded-md p-2 cursor-pointer"> */}
         <Link to="/login"><p>Hello,sign in </p>
+        {isAccountDropdownVisible && (
+          <div className="absolute top-14 left-0 w-40 bg-white border border-gray-200 shadow-md rounded-md p-2 z-50">
+            {Accounts.map((account, index) => (
+              <div
+                key={index}
+                className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+              >
+                {account}
+              </div>
+              ))} 
+          </div>
+        )}
         <span className="font-semibold text-sm">Account & Lists</span></Link>
         
+      {/* </div> */}
       </div>
+
+      
 
       {/* Returns & Orders */}
       <div className="text-xs hover:border hover:border-gray-400 rounded-md p-2 cursor-pointer">
