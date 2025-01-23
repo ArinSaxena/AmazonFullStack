@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addItem } from "utility/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, setCartItems } from "utility/cartSlice";
+import axios from "axios";
 
 const ProductCard = ({ card }) => {
 
   const dispatch = useDispatch();
+  const token= useSelector(state => state.user.userData.token);
 
 
   const handleSubmit = () =>{
+    axios.post("http:localhost6060/api/cart"
+      ,{
+        item:card,    // body
+      }, {
+      headers:{
+        Authorization:`Bearer ${token}`
+      }
+    })
+    .then(response => {
+      const items = response?.data?.cart || [];
+      dispatch(setCartItems(items));
+      console.log('success');
+    })
+    .catch(err => console.error(err));
     dispatch(addItem({...card}));
 
   }

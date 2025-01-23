@@ -6,6 +6,10 @@ const cartSlice = createSlice({
     cartItems: [],
   },
   reducers: {
+    setCartItems:(state,action) => {
+      state.items= action.payload;
+
+    },
     addItem: (state, action) => {
       console.log(action.payload);
       state.cartItems.push(action.payload);
@@ -40,6 +44,7 @@ const cartSlice = createSlice({
 });
 
 export const {
+  setCartItems,
   addItem,
   removeItem,
 increaseItem,

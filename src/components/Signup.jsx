@@ -12,7 +12,6 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError("");
     console.log(username, password);
     axios
       .post("http://localhost:6061/register", { username, password })

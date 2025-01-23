@@ -126,6 +126,8 @@ const Navbar = () => {
               ))} 
           </div>
         )}
+        
+        
         <span className="font-semibold text-sm">Account & Lists</span></Link>
         
       {/* </div> */}
@@ -147,7 +149,10 @@ const Navbar = () => {
         <FaShoppingCart className="h-6 w-6 text-white" />{" "}
         {/* Replaced img with react-icon */}
       </div>
-      </Link>    
+      </Link>
+      <Link to="profile" className="2xl">
+        <p>Profile</p></Link>
+    
     </div>
   );
 };

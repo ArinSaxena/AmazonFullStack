@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,6 +16,25 @@ const CartComponent = () => {
   const [toggle, setToggle] = useState("false");
 
   const dispatch = useDispatch();
+
+  // const handleSubmit = () =>{
+  //   axios.post("http:localhost/6060/api/cart"
+  //     ,{
+  //       item:card,    // body
+  //     }, {
+  //     headers:{
+  //       Authorization:`Bearer ${token}`
+  //     }
+  //   })
+  //   .then(response => {
+  //     const items = response?.data?.cart || [];
+  //     dispatch(setCartItems(items));
+  //     console.log('success');
+  //   })
+  //   .catch(err => console.error(err));
+  //   dispatch(addItem({...card}));
+
+  // }
 
   const handleToggle = (id) => {
     dispatch(toggleItemSelection(id));

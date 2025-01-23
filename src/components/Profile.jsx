@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,10 +11,15 @@ const Profile = () => {
 
   const handleLogout = () => {
     dispatch(removeCurrentUser());
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('refresh_token')
-    navigate('/login');
-  };
+    const refreshToken = localStorage.getItem('refreshToken');
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    axios.post('http://localhost:6061/delete', { token: refreshToken })
+        .then(response => {
+            // navigate('/login');
+        })
+        .catch(err => console.error(err))
+}
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

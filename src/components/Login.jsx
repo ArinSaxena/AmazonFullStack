@@ -1,9 +1,25 @@
 // src/components/LoginPage.jsx
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { setCurrentUser } from "utility/authSlice";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Link,
+  Navigate,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+
+export function Auth() {
+  const user = useSelector((state) => state.user.userData);
+  const location = useLocation();
+  return user ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" state={{ from: location.pathname }} />
+  );
+}
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -12,19 +28,21 @@ const LoginPage = () => {
   const [username, setUserName] = useState("");
   const [password, setUserPassword] = useState("");
   const [error, setError] = useState("");
+  const location = useLocation();
+  const nextPage = location.state?.from || "/profile";
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     axios
       .post("http://localhost:6061/login", { username, password })
       .then((response) => {
         const { token, refresh_token } = response?.data;
-        dispatch(setCurrentUser({username }));
-        localStorage.setItem('token', token)
-        localStorage.setItem('refresh_token', refresh_token)
+        dispatch(setCurrentUser({ username, refresh_token, token }));
+        localStorage.setItem("token", token);
+        localStorage.setItem("refresh_token", refresh_token);
 
-        navigate("/profile");
+        navigate(nextPage);
         console.log(response);
       })
       .catch((err) => {
@@ -36,6 +54,8 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+     
+
       {/* Container */}
       <form
         className="w-full max-w-sm p-6 bg-white shadow-md rounded-lg"
@@ -109,6 +129,9 @@ const LoginPage = () => {
               Create your Amazon account
             </Link>
           </p>
+          <Link to="/" className="text-center 2xl:">
+        <p>Back to home</p>
+      </Link>
         </div>
       </form>
     </div>
